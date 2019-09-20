@@ -9,32 +9,39 @@ public class Main {
     public static final double sine_freq = 4;// just a generated sine frequency as an example
     public static final double sine_freq_period = pi / (((double)samples / time) / sine_freq);//calculating sine wave sample period
 
-    private static double[]  x1, x2, y2, res;
+    private static double[] in, real, img, res;
 
     public static void main(String[] args)
     {
-        x1 = new double[samples];
-        x2 = new double[samples];
-        y2 = new double[samples];
+        in = new double[samples];
+        real = new double[samples];
+        img = new double[samples];
         res = new double[samples];
 
         for(int i=0;i<samples;i++)
         {
-            x1[i]= Math.sin((double)(2)*(double)i*sine_freq_period) + 2 * Math.sin((double)(2)*(double)i*sine_freq_period * 2) + 0.5* Math.sin((double)(2)*(double)i*sine_freq_period * 4);
+            in[i]= Math.sin((double)(2)*(double)i*sine_freq_period) + 2 * Math.sin((double)(2)*(double)i*sine_freq_period * 2) + 0.5* Math.sin((double)(2)*(double)i*sine_freq_period * 4);
 
-            x2[i]=x1[i];
-            y2[i]=0;
+            real[i]= in[i];
+            img[i]=0;
         }
 
         //FFT
-        if (fft(samples, x2, y2)==1) System.exit(-9);
+        if (fft(samples, real, img)==1) System.exit(-9);
 
 
-        System.out.println("\n Frequency\t\t\tFFT\n");
+        System.out.println("\n Frequency\t\t\tFFT magnitude");
         for (int i = 0; i < samples/2; i++)
         {
-            res[i]=Math.sqrt(x2[i]*x2[i]+y2[i]*y2[i]);
+            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i]);
             System.out.println(" " + formatDoubleToString(((samples / time) / samples)*i) + " Hz:\t\t\t\t" + formatDoubleToString(res[i]));
+        }
+
+        System.out.println("\n Frequency\t\t\tFFT real+img");
+
+        for (int i = 0; i < samples/2; i++)
+        {
+            System.out.println(" " + formatDoubleToString(((samples / time) / samples)*i) + " Hz:\t\t\t\tr: " + formatDoubleToString(real[i]) + "\t\ti: " + formatDoubleToString(img[i]));
         }
     }
 
