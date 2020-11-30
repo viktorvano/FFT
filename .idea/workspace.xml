@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aef5329-b9be-4dab-b9be-e3086cf1e8d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8aef5329-b9be-4dab-b9be-e3086cf1e8d2" name="Default Changelist" comment="Fixed some details.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/FFT/FFT/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FFT/FFT/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FFT/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FFT/Main.java" afterDir="false" />
@@ -68,32 +85,59 @@
       <option name="presentableId" value="Default" />
       <updated>1568956879169</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixed some details.">
+      <created>1606758878700</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606758878700</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed some details." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some details." />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1637" height="514" key="GridCell.Tab.0.bottom" timestamp="1606758805871">
+    <state width="1637" height="514" key="GridCell.Tab.0.bottom" timestamp="1606764582292">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1493" height="404" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606651062510" />
-    <state width="1637" height="514" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1606758805871" />
-    <state width="1637" height="514" key="GridCell.Tab.0.center" timestamp="1606758805871">
+    <state width="1637" height="514" key="GridCell.Tab.0.bottom/0.0.1680.1010@0.0.1680.1010" timestamp="1606764582292" />
+    <state width="1637" height="514" key="GridCell.Tab.0.center" timestamp="1606764582292">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1493" height="404" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606651062510" />
-    <state width="1637" height="514" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1606758805871" />
-    <state width="1637" height="514" key="GridCell.Tab.0.left" timestamp="1606758805871">
+    <state width="1637" height="514" key="GridCell.Tab.0.center/0.0.1680.1010@0.0.1680.1010" timestamp="1606764582292" />
+    <state width="1637" height="514" key="GridCell.Tab.0.left" timestamp="1606764582292">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1493" height="404" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606651062510" />
-    <state width="1637" height="514" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1606758805871" />
-    <state width="1637" height="514" key="GridCell.Tab.0.right" timestamp="1606758805871">
+    <state width="1637" height="514" key="GridCell.Tab.0.left/0.0.1680.1010@0.0.1680.1010" timestamp="1606764582292" />
+    <state width="1637" height="514" key="GridCell.Tab.0.right" timestamp="1606764582292">
       <screen x="0" y="0" width="1680" height="1010" />
     </state>
     <state width="1493" height="404" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606651062510" />
-    <state width="1637" height="514" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1606758805871" />
+    <state width="1637" height="514" key="GridCell.Tab.0.right/0.0.1680.1010@0.0.1680.1010" timestamp="1606764582292" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1606645605887">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1606645605887" />
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2" timestamp="1606758883696">
+      <screen x="0" y="0" width="1680" height="1010" />
+    </state>
+    <state x="432" y="238" key="Vcs.Push.Dialog.v2/0.0.1680.1010@0.0.1680.1010" timestamp="1606758883696" />
   </component>
 </project>

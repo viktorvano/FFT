@@ -3,7 +3,7 @@ package FFT;
 import java.text.DecimalFormat;
 
 public class Main {
-    public static final double  pi = Math.atan2(1, 1) * 4;//calculated pi
+    public static final double  pi = Math.atan2(1, 1) * 4.0;//calculated pi
     public static final int samples = 64;//Number of samples in the buffer
     public static final double time = 1.0;//total time recorded in the buffer
     public static final double sine_freq_period = pi / ((double)samples / time);//calculating sine wave sample period
@@ -20,7 +20,7 @@ public class Main {
         for(int i=0;i<samples;i++)
         {
             in[i]= Math.sin(2.0*(double)i*sine_freq_period)
-                    + 4 * Math.sin(2.0*(double)i*sine_freq_period * 2)
+                    + 3 * Math.sin(2.0*(double)i*sine_freq_period * 2)
                     + 0.5 * Math.sin(2.0*(double)i*sine_freq_period * 4);
 
             real[i]= in[i];
@@ -29,13 +29,13 @@ public class Main {
         }
 
         //FFT
-        if (fft(samples, real, img)==1) System.exit(-9);
+        fft(samples, real, img);
 
 
         System.out.println("\n Frequency\t\t\tFFT magnitude");
         for (int i = 0; i < samples/2; i++)
         {
-            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i])*2;
+            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i])*2.0;
             System.out.println(" " + formatDoubleToString(((samples / time) / samples)*i) + " Hz:\t\t\t\t" + formatDoubleToString(res[i]));
         }
 
@@ -82,7 +82,7 @@ public class Main {
         }
     }
 
-    static int fft(int n, double[] x, double[] y)
+    static void fft(int n, double[] x, double[] y)
     {
         int[]   bitrev;
         double[] sintbl;
@@ -94,11 +94,9 @@ public class Main {
             n = -n;  inverse = 1;
         } else inverse = 0;
         n4 = n / 4;
-        if (n == 0) return 0;
+        if (n == 0) return;
         sintbl = new double[n + n4];
         bitrev = new int[n];
-        if (sintbl == null || bitrev == null)
-            return 1;
 
         makeSineTable(n, sintbl);
         makeBitReverse(n, bitrev);
@@ -135,8 +133,6 @@ public class Main {
                 x[i] /= n;
                 y[i] /= n;
             }
-
-        return 0;
     }
 
     private static String formatDoubleToString(double number)
