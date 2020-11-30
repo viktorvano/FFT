@@ -3,11 +3,10 @@ package FFT;
 import java.text.DecimalFormat;
 
 public class Main {
-    public static final double  pi = Math.atan2(1, 1) * 4;
+    public static final double  pi = Math.atan2(1, 1) * 4;//calculated pi
     public static final int samples = 64;//Number of samples in the buffer
-    public static final double time = 0.5;//total time recorded in the buffer
-    public static final double sine_freq = 4;// just a generated sine frequency as an example
-    public static final double sine_freq_period = pi / (((double)samples / time) / sine_freq);//calculating sine wave sample period
+    public static final double time = 1.0;//total time recorded in the buffer
+    public static final double sine_freq_period = pi / ((double)samples / time);//calculating sine wave sample period
 
     private static double[] in, real, img, res;
 
@@ -20,10 +19,13 @@ public class Main {
 
         for(int i=0;i<samples;i++)
         {
-            in[i]= Math.sin((double)(2)*(double)i*sine_freq_period) + 2 * Math.sin((double)(2)*(double)i*sine_freq_period * 2) + 0.5* Math.sin((double)(2)*(double)i*sine_freq_period * 4);
+            in[i]= Math.sin(2.0*(double)i*sine_freq_period)
+                    + 4 * Math.sin(2.0*(double)i*sine_freq_period * 2)
+                    + 0.5 * Math.sin(2.0*(double)i*sine_freq_period * 4);
 
             real[i]= in[i];
             img[i]=0;
+            System.out.println(real[i]);
         }
 
         //FFT
@@ -33,7 +35,7 @@ public class Main {
         System.out.println("\n Frequency\t\t\tFFT magnitude");
         for (int i = 0; i < samples/2; i++)
         {
-            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i]);
+            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i])*2;
             System.out.println(" " + formatDoubleToString(((samples / time) / samples)*i) + " Hz:\t\t\t\t" + formatDoubleToString(res[i]));
         }
 
@@ -45,32 +47,33 @@ public class Main {
         }
     }
 
-    static void makeSineTable(int n, double[] sintbl)
+    static void makeSineTable(int n, double[] sinTable)
     {
         int i, n2, n4, n8;
         double c, s, dc, ds, t;
         n2 = n / 2;  n4 = n / 4;  n8 = n / 8;
         t = Math.sin(pi / n);
         dc = 2 * t * t;  ds = Math.sqrt(dc * (2 - dc));
-        t = 2 * dc;  c = sintbl[n4] = 1;  s = sintbl[0] = 0;
+        t = 2 * dc;  c = sinTable[n4] = 1;  s = sinTable[0] = 0;
         for (i = 1; i < n8; i++) {
             c -= dc;  dc += t * c;
             s += ds;  ds -= t * s;
-            sintbl[i] = s;
-            sintbl[n4 - i] = c;
+            sinTable[i] = s;
+            sinTable[n4 - i] = c;
         }
-        if (n8 != 0) sintbl[n8] = Math.sqrt(0.5);
+        if (n8 != 0) sinTable[n8] = Math.sqrt(0.5);
         for (i = 0; i < n4; i++)
-            sintbl[n2 - i] = sintbl[i];
+            sinTable[n2 - i] = sinTable[i];
         for (i = 0; i < n2 + n4; i++)
-            sintbl[i + n2] = - sintbl[i];
+            sinTable[i + n2] = - sinTable[i];
     }
 
     static void makeBitReverse(int n, int[] bitrev)
     {
         int i, j, k, n2;
         n2 = n / 2;  i = j = 0;
-        for ( ; ; ) {
+        while(true)
+        {
             bitrev[i] = j;
             if (++i >= n) break;
             k = n2;
@@ -81,32 +84,29 @@ public class Main {
 
     static int fft(int n, double[] x, double[] y)
     {
-        int    last_n = 0;
-        int[]   bitrev = null;
-        double[] sintbl = null;
+        int[]   bitrev;
+        double[] sintbl;
         int i, j, k, ik, h, d, k2, n4, inverse;
         double t, s, c, dx, dy;
 
-        if (n < 0) {
+        if(n < 0)
+        {
             n = -n;  inverse = 1;
         } else inverse = 0;
         n4 = n / 4;
-        if (n != last_n || n == 0) {
-            last_n = n;
-            if (sintbl != null) sintbl = null;
-            if (bitrev != null) bitrev = null;
-            if (n == 0) return 0;
-            sintbl = new double[n + n4];
-            bitrev = new int[n];
-            if (sintbl == null || bitrev == null) {
-                return 1;
-            }
-            makeSineTable(n, sintbl);
-            makeBitReverse(n, bitrev);
-        }
-        for (i = 0; i < n; i++) {
+        if (n == 0) return 0;
+        sintbl = new double[n + n4];
+        bitrev = new int[n];
+        if (sintbl == null || bitrev == null)
+            return 1;
+
+        makeSineTable(n, sintbl);
+        makeBitReverse(n, bitrev);
+        for(i = 0; i < n; i++)
+        {
             j = bitrev[i];
-            if (i < j) {
+            if (i < j)
+            {
                 t = x[i];  x[i] = x[j];  x[j] = t;
                 t = y[i];  y[i] = y[j];  y[j] = t;
             }
@@ -117,7 +117,8 @@ public class Main {
                 c = sintbl[h + n4];
                 if (inverse!=0) s = - sintbl[h];
                 else         s =   sintbl[h];
-                for (i = j; i < n; i += k2) {
+                for(i = j; i < n; i += k2)
+                {
                     ik = i + k;
                     dx = s * y[ik] + c * x[ik];
                     dy = c * y[ik] - s * x[ik];
@@ -140,6 +141,6 @@ public class Main {
 
     private static String formatDoubleToString(double number)
     {
-        return new DecimalFormat("##########.########").format(number).toString();
+        return new DecimalFormat("##########.########").format(number);
     }
 }
