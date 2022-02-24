@@ -22,9 +22,9 @@ public class Main {
 
         for(int i=0;i<samples;i++)
         {
-            in[i]= Math.sin(2.0*(double)i*sine_freq_period)
-                    + 3 * Math.sin(2.0*(double)i*sine_freq_period * 2)
-                    + 0.5 * Math.sin(2.0*(double)i*sine_freq_period * 4);
+            in[i]= Math.sin(2.0*(double)i*sine_freq_period)                 //M=1 F=1
+                    + 3 * Math.sin(2.0*(double)i*sine_freq_period * 2)      //M=3 F=2
+                    + 0.5 * Math.sin(2.0*(double)i*sine_freq_period * 4);   //M=0.5 F=4
 
             real[i]= in[i];
             img[i]=0;
