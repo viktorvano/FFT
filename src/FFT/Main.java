@@ -28,7 +28,7 @@ public class Main {
 
             real[i]= in[i];
             img[i]=0;
-            System.out.println(real[i]);
+            System.out.println("time[" + (i*(time/samples)) + "]: " + real[i]);
         }
 
         //FFT
