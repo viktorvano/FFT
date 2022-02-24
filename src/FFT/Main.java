@@ -16,6 +16,9 @@ public class Main {
         real = new double[samples];
         img = new double[samples];
         res = new double[samples];
+        
+        System.out.println("Total time: " + time + " [s]");
+        System.out.println("Samples: " + samples);
 
         for(int i=0;i<samples;i++)
         {
@@ -35,7 +38,7 @@ public class Main {
         System.out.println("\n Frequency\t\t\tFFT magnitude");
         for (int i = 0; i < samples/2; i++)
         {
-            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i])*2.0;
+            res[i]=Math.sqrt(real[i]* real[i]+ img[i]* img[i]);
             System.out.println(" " + formatDoubleToString(((samples / time) / samples)*i) + " Hz:\t\t\t\t" + formatDoubleToString(res[i]));
         }
 
@@ -133,6 +136,12 @@ public class Main {
                 x[i] /= n;
                 y[i] /= n;
             }
+        
+        for(int q=0; q<n; q++)
+        {
+            x[q] *= 2.0;
+            y[q] *= 2.0;
+        }
     }
 
     private static String formatDoubleToString(double number)
